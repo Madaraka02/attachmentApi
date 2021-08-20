@@ -79,8 +79,12 @@ WSGI_APPLICATION = 'school_Api.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME':'d2rdfug7i4duo',
+        'USER':'bmqbgcfnrglmqo',
+        'PASSWORD':'ec139f87b4edee5f1e32d1e75c54128dd883910bec90f3de68912e6c01aa72e4',
+        'HOST':'ec2-35-153-114-74.compute-1.amazonaws.com',
+        'PORT':'5432'
     }
 }
 
