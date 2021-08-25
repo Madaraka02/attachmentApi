@@ -1,6 +1,6 @@
 from django.shortcuts import render
-from .models import School, Student
-from .serializers import SchoolSerializer, StudentSerializer
+from .models import School, Student, Company
+from .serializers import SchoolSerializer, StudentSerializer, CompanySerializer
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 # from rest_framework. import generics
@@ -96,3 +96,42 @@ def studentSchoolDetail(request, slug):
     students = Student.objects.filter(campus=school)
     serializer = StudentSerializer(students, many=True)
     return Response(serializer.data)    
+
+
+# COMPANY API
+@api_view(['POST'])
+def companyCreate(request):
+    serializer = CompanySerializer(data=request.data)
+
+    if serializer.is_valid():
+        serializer.save()
+
+    return Response(serializer.data)
+
+@api_view(['POST'])
+def companyUpdate(request,id):
+    company = Company.objects.get(id=id)
+    serializer = CompanySerializer(instance=company, data=request.data)
+
+    if serializer.is_valid():
+        serializer.save()
+
+    return Response(serializer.data)
+
+@api_view(['DELETE'])
+def companyDelete(request,id):
+    company = Company.objects.get(id=id)
+    company.delete()
+    return Response('Deleted succesfully')
+
+@api_view(['GET'])
+def companyList(request):
+    companies = Company.objects.all()
+    serializer = CompanySerializer(companies, many=True)
+    return Response(serializer.data)
+
+@api_view(['GET'])
+def companyDetail(request, id):
+    company = Company.objects.get(id=id)
+    serializer = CompanySerializer(company, many=False)
+    return Response(serializer.data)

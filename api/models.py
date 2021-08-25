@@ -20,3 +20,10 @@ class Student(models.Model):
     def __str__(self):
         return self.reg_no
 
+class Company(models.Model):
+    name = models.CharField(max_length=2000)
+    reg_number = models.CharField(max_length=3000)
+    slug = models.SlugField()
+
+    def __str__(self):
+        return self.name
