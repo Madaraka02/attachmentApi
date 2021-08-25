@@ -26,7 +26,7 @@ urlpatterns = [
     # company api
 
     path('api/v3/companies/add/', companyCreate, name='company-create'),
-    path('api/v3/companies/', companyList, name='companys'),
+    path('api/v3/companies/', companyList, name='companyies'),
     path('api/v3/companies/<str:id>/', companyDetail, name='company-detail'),
     path('api/v3/companies/update/<str:id>/', companyUpdate, name='company-update'),
     path('api/v3/companies/delete/<str:id>/', companyDelete, name='company-delete'),
