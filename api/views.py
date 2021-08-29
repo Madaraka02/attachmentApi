@@ -62,11 +62,10 @@ def studentCreate(request):
 
     return Response(serializer.data)
 
-@api_view(['PUT'])
+@api_view(['POST'])
 def studentUpdate(request,id):
-    data=request.data
     student = Student.objects.get(id=id)
-    serializer = StudentSerializer(student, data=request.data)
+    serializer = StudentSerializer(instance=student, data=request.data)
 
     if serializer.is_valid():
         serializer.save()
@@ -109,7 +108,7 @@ def companyCreate(request):
 
     return Response(serializer.data)
 
-@api_view(['PUT'])
+@api_view(['POST'])
 def companyUpdate(request,id):
     company = Company.objects.get(id=id)
     serializer = CompanySerializer(instance=company, data=request.data)
