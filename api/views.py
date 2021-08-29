@@ -108,7 +108,7 @@ def companyCreate(request):
 
     return Response(serializer.data)
 
-@api_view(['POST'])
+@api_view(['PUT'])
 def companyUpdate(request,id):
     company = Company.objects.get(id=id)
     serializer = CompanySerializer(instance=company, data=request.data)
