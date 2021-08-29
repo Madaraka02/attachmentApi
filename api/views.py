@@ -64,6 +64,7 @@ def studentCreate(request):
 
 @api_view(['PUT'])
 def studentUpdate(request,id):
+    data=request.data
     student = Student.objects.get(id=id)
     serializer = StudentSerializer(student, data=request.data)
 
