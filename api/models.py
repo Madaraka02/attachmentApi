@@ -15,7 +15,7 @@ class Student(models.Model):
     course = models.CharField(max_length=100)
     transcript = models.FileField()
     year_of_completion = models.CharField(max_length=100)
-    campus = models.ForeignKey(School, on_delete=models.CASCADE)
+    campus = models.ForeignKey(School, on_delete=models.CASCADE, related_name='students')
 
     def __str__(self):
         return self.reg_no
