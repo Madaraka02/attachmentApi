@@ -2,6 +2,8 @@ from django.shortcuts import render
 from .models import School, Student, Company
 from .serializers import SchoolSerializer, StudentSerializer, CompanySerializer
 from rest_framework.decorators import api_view
+from rest_framework.parsers import FileUploadParser
+from rest_framework.parsers import MultiPartParser, FormParser
 from rest_framework.response import Response
 # from rest_framework. import generics
 # Create your views here.
@@ -53,14 +55,15 @@ def schoolDetail(request, id):
 #     serializer_class = StudentSerializer
 
 # STUDENT API
-@api_view(['POST'])
-def studentCreate(request):
+class studentCreate(APIView):
+  parser_classes = (MultiPartParser, FormParser)
+  def post(self, request, *args, **kwargs):
     serializer = StudentSerializer(data=request.data)
-
     if serializer.is_valid():
-        serializer.save()
-
-    return Response(serializer.data)
+      serializer.save()
+      return Response(serializer.data, status=status.HTTP_201_CREATED)
+    else:
+      return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['POST'])
 def studentUpdate(request,id):
