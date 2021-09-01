@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from rest_framework.views import APIView
 from .models import School, Student, Company
 from .serializers import SchoolSerializer, StudentSerializer, CompanySerializer
 from rest_framework.decorators import api_view
