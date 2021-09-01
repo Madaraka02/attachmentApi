@@ -58,16 +58,18 @@ def schoolDetail(request, id):
 
 # STUDENT API
 class studentCreate(APIView):
+    # MultiPartParser AND FormParser
+    # https://www.django-rest-framework.org/api-guide/parsers/#multipartparser
+    # "You will typically want to use both FormParser and MultiPartParser together in order to fully support HTML form data."
     parser_classes = (MultiPartParser, FormParser)
+
     def post(self, request, *args, **kwargs):
-        serializer = StudentSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data,
-status=status.HTTP_201_CREATED)
+        student_serializer = StudentSerializer(data=request.data)
+        if student_serializer.is_valid():
+            student_serializer.save()
+            return Response(student_serializer.data, status=status.HTTP_201_CREATED)
         else:
-            return Response(serializer.errors,
-status=status.HTTP_400_BAD_REQUEST)               
+            return Response(student_serializer.errors, status=status.HTTP_400_BAD_REQUEST)              
 
 @api_view(['POST'])
 def studentUpdate(request,id):
