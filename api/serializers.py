@@ -8,10 +8,10 @@ class SchoolSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class StudentSerializer(serializers.ModelSerializer):
-    campus_name = serializers.RelatedField(source='campus', read_only=True)
+    # campus_name = serializers.RelatedField(source='campus', read_only=True)
     class Meta:
         model = Student
-        fields = ('id', 'name', 'reg_no', 'course', 'transcript', 'year_of_completion', 'campus_name')
+        fields = '__all__'
 
 class CompanySerializer(serializers.ModelSerializer):
     class Meta:
