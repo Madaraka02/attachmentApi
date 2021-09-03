@@ -9,6 +9,9 @@ class School(models.Model):
     def __str__(self):
         return self.name
 
+    class Meta:
+        ordering = ('-id',)    
+
 class Student(models.Model):
     name = models.CharField(max_length=1000)
     reg_no = models.CharField(max_length=100)
@@ -20,6 +23,9 @@ class Student(models.Model):
     def __str__(self):
         return self.reg_no
 
+    class Meta:
+        ordering = ('-id',) 
+
 class Company(models.Model):
     name = models.CharField(max_length=2000)
     reg_number = models.CharField(max_length=3000)
@@ -27,3 +33,6 @@ class Company(models.Model):
 
     def __str__(self):
         return self.name
+        
+    class Meta:
+        ordering = ('-id',)     
