@@ -72,10 +72,11 @@ class studentCreate(APIView):
         else:
             return Response(student_serializer.errors, status=status.HTTP_400_BAD_REQUEST)              
 
-@api_view(['POST'])
+@api_view(['PUT'])
 def studentUpdate(request,id):
+    data=request.data
     student = Student.objects.get(id=id)
-    serializer = StudentSerializer(instance=student, data=request.data)
+    serializer = StudentSerializer(student, data=request.data)
 
     if serializer.is_valid():
         serializer.save()
@@ -120,8 +121,10 @@ def companyCreate(request):
 
 @api_view(['POST'])
 def companyUpdate(request,id):
+    data=request.data
     company = Company.objects.get(id=id)
-    serializer = CompanySerializer(instance=company, data=request.data)
+    serializer = CompanySerializer(company, data=request.data)
+    # serializer = CompanySerializer(instance=company, data=request.data)
 
     if serializer.is_valid():
         serializer.save()
