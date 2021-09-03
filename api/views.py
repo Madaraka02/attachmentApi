@@ -20,8 +20,9 @@ def schoolCreate(request):
 
     return Response(serializer.data)
 
-@api_view(['POST'])
+@api_view(['PUT'])
 def schoolUpdate(request,id):
+    data=request.data
     school = School.objects.get(id=id)
     serializer = SchoolSerializer(instance=school, data=request.data)
 
