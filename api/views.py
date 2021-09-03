@@ -24,7 +24,7 @@ def schoolCreate(request):
 def schoolUpdate(request,id):
     data=request.data
     school = School.objects.get(id=id)
-    serializer = SchoolSerializer(instance=school, data=request.data)
+    serializer = SchoolSerializer(school, data=request.data)
 
     if serializer.is_valid():
         serializer.save()
