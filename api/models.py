@@ -36,3 +36,16 @@ class Company(models.Model):
         
     class Meta:
         ordering = ('-id',)     
+
+class Jobs(models.Model):
+    title = models.CharField(max_length=1000)
+    description = models.TextField()
+    required_skills = models.TextField()
+    open = models.BooleanField(default=True)
+    posted_by = models.ForeignKey(Company, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        ordering = ('-id',)    

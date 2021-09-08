@@ -1,8 +1,8 @@
 from django.shortcuts import render
 from rest_framework.views import APIView
 from rest_framework import status
-from .models import School, Student, Company
-from .serializers import SchoolSerializer, StudentSerializer, CompanySerializer
+from .models import School, Student, Company, Jobs
+from .serializers import SchoolSerializer, StudentSerializer, CompanySerializer, JobSerializer
 from rest_framework.decorators import api_view
 from rest_framework.parsers import FileUploadParser
 from rest_framework.parsers import MultiPartParser, FormParser
@@ -119,7 +119,7 @@ def companyCreate(request):
 
     return Response(serializer.data)
 
-@api_view(['POST'])
+@api_view(['PUT'])
 def companyUpdate(request,id):
     data=request.data
     company = Company.objects.get(id=id)
@@ -148,3 +148,49 @@ def companyDetail(request, id):
     company = Company.objects.get(id=id)
     serializer = CompanySerializer(company, many=False)
     return Response(serializer.data)
+
+#JOBS API
+@api_view(['POST'])
+def jobCreate(request):
+    serializer = JobSerializer(data=request.data)
+
+    if serializer.is_valid():
+        serializer.save()
+
+    return Response(serializer.data)
+
+@api_view(['PUT'])
+def jobUpdate(request,id):
+    data=request.data
+    job = Jobs.objects.get(id=id)
+    serializer = JobSerializer(job, data=request.data)
+
+    if serializer.is_valid():
+        serializer.save()
+
+    return Response(serializer.data)
+
+@api_view(['DELETE'])
+def jobDelete(request,id):
+    job = Jobs.objects.get(id=id)
+    job.delete()
+    return Response('Deleted succesfully')
+
+@api_view(['GET'])
+def jobList(request):
+    jobs = Jobs.objects.all()
+    serializer = JobSerializer(jobs, many=True)
+    return Response(serializer.data)
+
+@api_view(['GET'])
+def jobDetail(request, id):
+    job = Jobs.objects.get(id=id)
+    serializer = JobSerializer(job, many=False)
+    return Response(serializer.data)
+
+@api_view(['GET'])
+def jobCompanyDetail(request, slug):
+    company = Company.objects.get(slug=slug)
+    jobs = Jobs.objects.filter(posted_by=company)
+    serializer = JobSerializer(jobs, many=True)
+    return Response(serializer.data)  

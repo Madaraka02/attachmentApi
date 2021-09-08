@@ -3,7 +3,8 @@ from django.urls import path
 from .views import (schoolList, schoolDetail, schoolCreate, schoolUpdate, schoolDelete,
                     studentList, studentDetail, studentCreate, studentUpdate, studentDelete,
                     studentSchoolDetail,
-                    companyList, companyDetail, companyCreate, companyUpdate, companyDelete)
+                    companyList, companyDetail, companyCreate, companyUpdate, companyDelete,
+                    jobCreate, jobUpdate, jobDelete, jobList, jobDetail, jobCompanyDetail)
 
 urlpatterns = [
     # school api
@@ -30,4 +31,13 @@ urlpatterns = [
     path('api/v3/companies/<str:id>/', companyDetail, name='company-detail'),
     path('api/v3/companies/<str:id>/update/', companyUpdate, name='company-update'),
     path('api/v3/companies/<str:id>/delete/', companyDelete, name='company-delete'),
+
+    #Jobs api
+
+    path('api/v2/jobs/add/', jobCreate, name='job-create'),
+    path('api/v2/jobs/', jobList, name='jobs'),
+    path('api/v2/jobs/<str:id>/', jobDetail, name='job-detail'),
+    path('api/v2/jobs/school/<str:slug>/', jobCompanyDetail, name='job-school-detail'),
+    path('api/v2/jobs/<str:id>/update/', jobUpdate, name='job-update'),
+    path('api/v2/jobs/<str:id>/delete/', jobDelete, name='job-delete'),
 ]
