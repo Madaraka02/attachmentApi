@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'allauth.account',
     'rest_auth.registration',
 ]
+SITE_ID = 1
 
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
