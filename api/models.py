@@ -4,6 +4,7 @@ from django.db import models
 
 class School(models.Model):
     name = models.CharField(max_length=2000)
+    password = models.CharField(max_length=50, default="school")
     slug = models.SlugField()
 
     def __str__(self):
@@ -15,6 +16,7 @@ class School(models.Model):
 class Student(models.Model):
     name = models.CharField(max_length=1000)
     reg_no = models.CharField(max_length=100)
+    password = models.CharField(max_length=50, default="password")
     course = models.CharField(max_length=100)
     transcript = models.FileField()
     year_of_completion = models.CharField(max_length=100)
@@ -28,6 +30,7 @@ class Student(models.Model):
 
 class Company(models.Model):
     name = models.CharField(max_length=2000)
+    password = models.CharField(max_length=50, default="company")
     reg_number = models.CharField(max_length=3000)
     slug = models.SlugField()
 
