@@ -51,7 +51,3 @@ class Jobs(models.Model):
     class Meta:
         ordering = ('-id',)    
 
-class RegisterStudents(models.Model):
-    username = models.CharField(max_length=)  
-    password = 
-    student =      
