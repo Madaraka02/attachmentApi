@@ -8,7 +8,7 @@ class SchoolSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class StudentSerializer(serializers.ModelSerializer):
-    # campus_name = serializers.RelatedField(source='campus', read_only=True)
+    campus_name = serializers.StringRelatedField()
     class Meta:
         model = Student
         fields = '__all__'
