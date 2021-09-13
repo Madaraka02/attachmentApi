@@ -14,11 +14,11 @@ class StudentSerializer(serializers.ModelSerializer):
         fields = ('id', 'name', 'reg_no', 'password', 'course', 'transcript', 'year_of_completion', 'campus_name')
 
 class JobSerializer(serializers.ModelSerializer):
-    posted_by = serializers.StringRelatedField()
+    company = serializers.RelatedField(source='posted_by', read_only=True)
     # campus_name = serializers.RelatedField(source='campus', read_only=True)
     class Meta:
         model = Jobs
-        fields = '__all__'        
+        fields = ('id', 'title', 'description', 'required_skills', 'open', 'company')       
 
 class CompanySerializer(serializers.ModelSerializer):
     class Meta:
