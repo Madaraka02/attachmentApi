@@ -14,6 +14,7 @@ class StudentSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class JobSerializer(serializers.ModelSerializer):
+    posted_by = serializers.StringRelatedField()
     # campus_name = serializers.RelatedField(source='campus', read_only=True)
     class Meta:
         model = Jobs
