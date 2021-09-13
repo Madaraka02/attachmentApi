@@ -8,17 +8,17 @@ class SchoolSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class StudentSerializer(serializers.ModelSerializer):
-    campus_name = serializers.ReadOnlyField(source='campus.name')
+    campus_name = serializers.RelatedField(source='campus', read_only=True)
     class Meta:
         model = Student
         fields = ('id', 'name', 'reg_no', 'password', 'course', 'transcript', 'year_of_completion', 'campus_name')
 
 class JobSerializer(serializers.ModelSerializer):
-    company = serializers.RelatedField(source='posted_by', read_only=True)
+    posted_by = serializers.StringRelatedField()
     # campus_name = serializers.RelatedField(source='campus', read_only=True)
     class Meta:
         model = Jobs
-        fields = ('id', 'title', 'description', 'required_skills', 'open', 'company')       
+        fields = '__all__'        
 
 class CompanySerializer(serializers.ModelSerializer):
     class Meta:
