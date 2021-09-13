@@ -31,7 +31,7 @@
     path('api/v4/jobs/add/', jobCreate, name='job-create'),
     path('api/v4/jobs/', jobList, name='jobs'),
     path('api/v4/jobs/<str:id>/', jobDetail, name='job-detail'),
-    path('api/v4/jobs/school/<str:slug>/', jobCompanyDetail, name='job-school-detail'),
+    path('api/v4/jobs/company/<str:slug>/', jobCompanyDetail, name='job-company-detail'),
     path('api/v4/jobs/<str:id>/update/', jobUpdate, name='job-update'),
     path('api/v4/jobs/<str:id>/delete/', jobDelete, name='job-delete'),
 ```
