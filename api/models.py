@@ -56,7 +56,7 @@ class Jobs(models.Model):
     description = models.TextField()
     required_skills = models.TextField()
     open = models.BooleanField(default=True)
-    posted_by = models.ForeignKey(Company, on_delete=models.CASCADE)
+    posted_by = models.ForeignKey(Company, on_delete=models.CASCADE,  related_name='employer')
 
     def __str__(self):
         return self.title
