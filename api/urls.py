@@ -4,13 +4,15 @@ from .views import (schoolList, schoolDetail, schoolCreate, schoolUpdate, school
                     studentList, studentDetail, studentCreate, studentUpdate, studentDelete,
                     studentSchoolDetail,
                     companyList, companyDetail, companyCreate, companyUpdate, companyDelete,
-                    jobCreate, jobUpdate, jobDelete, jobList, jobDetail, jobCompanyDetail, getStudentLogins)
+                    jobCreate, jobUpdate, jobDelete, jobList, jobDetail, jobCompanyDetail, getStudentLogins,
+                    getSchoolLogins, getCompanyLogins)
 
 urlpatterns = [
     # school api
 
     path('api/v1/schools/add/', schoolCreate, name='school-create'),
     path('api/v1/schools/', schoolList, name='schools'),
+    path('api/v2/schools/credentials/', getSchoolLogins, name='schools-login'),
     path('api/v1/schools/<str:id>/', schoolDetail, name='school-detail'),
     path('api/v1/schools/<str:id>/update/', schoolUpdate, name='school-update'),
     path('api/v1/schools/<str:id>/delete/', schoolDelete, name='school-delete'),
@@ -29,6 +31,7 @@ urlpatterns = [
 
     path('api/v3/companies/add/', companyCreate, name='company-create'),
     path('api/v3/companies/', companyList, name='companyies'),
+    path('api/v2/companies/credentials/', getCompanyLogins, name='companies-login'),
     path('api/v3/companies/<str:id>/', companyDetail, name='company-detail'),
     path('api/v3/companies/<str:id>/update/', companyUpdate, name='company-update'),
     path('api/v3/companies/<str:id>/delete/', companyDelete, name='company-delete'),
