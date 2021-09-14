@@ -38,4 +38,4 @@ class SchoolLoginSerializer(serializers.ModelSerializer):
 class CompanyLoginSerializer(serializers.ModelSerializer):
     class Meta:
         model = Company
-        fields = ('id', 'name', 'reg_no', 'password')                   
+        fields = ('id', 'name', 'reg_number', 'password')                   
