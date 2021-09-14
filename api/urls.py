@@ -19,7 +19,7 @@ urlpatterns = [
 
     path('api/v2/students/add/', studentCreate.as_view(), name='student-create'),
     path('api/v2/students/', studentList, name='students'),
-    path('api/v2/students/login', getStudentLogins, name='students-login'),
+    path('api/v2/students/login/', getStudentLogins, name='students-login'),
     path('api/v2/students/<str:id>/', studentDetail, name='student-detail'),
     path('api/v2/students/school/<str:slug>/', studentSchoolDetail, name='student-school-detail'),
     path('api/v2/students/<str:id>/update/', studentUpdate, name='student-update'),
