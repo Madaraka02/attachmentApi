@@ -2,7 +2,8 @@ from django.shortcuts import render
 from rest_framework.views import APIView
 from rest_framework import status
 from .models import School, Student, Company, Jobs
-from .serializers import SchoolSerializer, StudentSerializer, CompanySerializer, JobSerializer
+from .serializers import (SchoolSerializer, StudentSerializer, CompanySerializer, JobSerializer,
+StudentLoginSerializer)
 from rest_framework.decorators import api_view
 from rest_framework.parsers import FileUploadParser
 from rest_framework.parsers import MultiPartParser, FormParser
@@ -194,3 +195,10 @@ def jobCompanyDetail(request, slug):
     jobs = Jobs.objects.filter(posted_by=company)
     serializer = JobSerializer(jobs, many=True)
     return Response(serializer.data)  
+
+
+@api_view(['GET'])
+def getStudentLogins(request):
+    students = Student.objects.all()
+    serializer = StudentLoginSerializer(students, many=True)
+    return Response(serializer.data)    
